@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class Input extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,17 +18,16 @@ public class MainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_input);
 
 
-        Button btnTambah = findViewById(R.id.btnTambah);
-        btnTambah.setOnClickListener(new View.OnClickListener() {
+        Button btnKembali = findViewById(R.id.btnKembali);
+        btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toInput = new Intent(getBaseContext(), Input.class);
-                startActivity(toInput);
+                Intent toHome = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(toHome);
             }
         });
     }
-
 }

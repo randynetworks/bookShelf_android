@@ -7,4 +7,23 @@
     </style>
 
 
+    <style name="labelForm">
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textSize">15sp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+
+    </style>
+
+    <style name="inputForm">
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textColorHint">@color/yellowHint</item>
+        <item name="android:textSize">15sp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="backgroundTint">@color/yellow</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+
 </resources>
