@@ -13,7 +13,6 @@
         <item name="autoSizeTextType">uniform</item>
         <item name="android:paddingLeft">3dp</item>
         <item name="android:fontFamily">sans-serif-black</item>
-
     </style>
 
     <style name="inputForm">
@@ -23,6 +22,18 @@
         <item name="autoSizeTextType">uniform</item>
         <item name="backgroundTint">@color/yellow</item>
         <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="cardText">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">15sp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="btn">
+        <item name="android:layout_marginLeft">10dp</item>
     </style>
 
 
