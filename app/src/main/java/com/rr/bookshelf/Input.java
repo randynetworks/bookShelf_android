@@ -67,6 +67,7 @@ public class Input extends AppCompatActivity {
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String setId = generateID(10);
                 String setTitle = title.getText().toString().trim();
                 String setAuthor = author.getText().toString().trim();
                 String setPublisher = publisher.getText().toString().trim();
@@ -80,6 +81,7 @@ public class Input extends AppCompatActivity {
                 System.out.println(setComplete);
 
                 Newbook = new Book();
+                Newbook.setId(setId);
                 Newbook.setTitle(setTitle);
                 Newbook.setAuthor(setAuthor);
                 Newbook.setPublisher(setPublisher);
@@ -88,7 +90,7 @@ public class Input extends AppCompatActivity {
 
                 rootNode = FirebaseDatabase.getInstance("https://bookshelf-47530-default-rtdb.firebaseio.com/");
                 reference = rootNode.getReference("Books");
-                reference.child(generateID(10)).setValue(Newbook);
+                reference.child(setId).setValue(Newbook);
                 Toast.makeText(Input.this,"Buku Baru berhasil di tambah!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(Input.this, MainActivity.class));
                 finish();

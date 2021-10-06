@@ -9,11 +9,29 @@ import java.io.Serializable;
 
 @IgnoreExtraProperties
 public class Book {
+    private String id;
     private String title;
     private String author;
     private String publisher;
     private String year;
     private Integer isComplete;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Book(String id, String title, String author, String publisher, String year, Integer isComplete) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.year = year;
+        this.isComplete = isComplete;
+    }
 
     public Book() {
 
