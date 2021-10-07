@@ -25,10 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     BookAdapter bookAdapter;
-    DatabaseReference database;
+    DatabaseReference database = FirebaseDatabase.getInstance("https://bookshelf-47530-default-rtdb.firebaseio.com/").getReference("Books");
     ArrayList<Book> bookList;
     RecyclerView recycleViewUnDone;
     
@@ -50,9 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         recycleViewUnDone = findViewById(R.id.recycleViewUnDone);
-        database = FirebaseDatabase.getInstance("https://bookshelf-47530-default-rtdb.firebaseio.com/").getReference("Books");
         recycleViewUnDone.setHasFixedSize(true);
         recycleViewUnDone.setLayoutManager(new LinearLayoutManager(this));
 
@@ -61,16 +59,13 @@ public class MainActivity extends AppCompatActivity {
         recycleViewUnDone.setAdapter(bookAdapter);
 
         database.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                bookList = new ArrayList<>();
-                for (DataSnapshot i : snapshot.getChildren()){
-                    Book singleBook = i.getValue(Book.class);
-//                    singleBook.setId(i.getKey());
-                    System.out.println(singleBook);
-                    bookList.add(singleBook);
+                for(DataSnapshot dataSnapshot : snapshot.getChildren() ){
+                    Book dataBook = dataSnapshot.getValue(Book.class);
+                    bookList.add(dataBook);
                 }
+                bookAdapter.notifyDataSetChanged();
             }
 
             @Override

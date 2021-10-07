@@ -49,14 +49,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookHolder> {
 
     public static class bookHolder extends RecyclerView.ViewHolder {
         TextView title, author, publisher, year;
-        CardView card_item;
         public bookHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textTitle);
             author = itemView.findViewById(R.id.textAuthor);
             publisher = itemView.findViewById(R.id.textPublisher);
             year = itemView.findViewById(R.id.textYear);
-            card_item = itemView.findViewById(R.id.card_item);
         }
     }
 }

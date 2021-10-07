@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Random;
 
-public class Input extends AppCompatActivity {
+public class Input extends Activity {
 
     EditText title;
     EditText author ;
