@@ -11,4 +11,6 @@
     <color name="yellowHint">#A1FFCC00</color>
     <color name="blue">#0F3492</color>
     <color name="green">#28A745</color>
+    <color name="red">#DC3545</color>
+    <color name="darkRed">#890D19</color>
 </resources>

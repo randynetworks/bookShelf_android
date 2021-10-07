@@ -101,10 +101,21 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/yellow"
-        android:textColor="@color/blue"
         android:text="Tambah Buku"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="*Tahan card untuk Menghapus"
+        android:textColor="@color/yellow"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/scrollView3"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
