@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,6 +127,20 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookHolder> {
             }
         });
 
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendBook = new Intent(context, Intent.class);
+                sendBook.putExtra("id", data.getId());
+                sendBook.putExtra("year", data.getYear());
+                sendBook.putExtra("title", data.getTitle());
+                sendBook.putExtra("author", data.getAuthor());
+                sendBook.putExtra("complete", data.getComplete());
+                sendBook.putExtra("publisher", data.getPublisher());
+
+                context.startActivity(sendBook);
+            }
+        });
 
     }
 

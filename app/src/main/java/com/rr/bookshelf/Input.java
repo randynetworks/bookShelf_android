@@ -31,7 +31,7 @@ public class Input extends Activity {
     EditText year;
     Switch id_done;
     Button btnSimpan;
-    Book Newbook;
+    Book Newbook = (Book) getIntent().getSerializableExtra("book");
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -47,12 +47,23 @@ public class Input extends Activity {
 
 
         // List variable of book in layout activity
+        String bookid = generateID(10);
         btnSimpan = findViewById(R.id.btnSimpan);
         title = findViewById(R.id.id_title);
         author = findViewById(R.id.id_author);
         publisher = findViewById(R.id.id_publisher);
         year = findViewById(R.id.id_year);
         id_done = findViewById(R.id.id_done);
+
+        if (getIntent().getStringExtra("id") != null) {
+            bookid = getIntent().getStringExtra("id");
+            title.setText(getIntent().getStringExtra("title"));
+            author.setText(getIntent().getStringExtra("author"));
+            publisher.setText(getIntent().getStringExtra("publisher"));
+            year.setText(getIntent().getStringExtra("year"));
+            id_done.setText(getIntent().getStringExtra("complete"));
+
+        }
 
         // action for back to home
         Button btnKembali = findViewById(R.id.btnKembali);
@@ -64,21 +75,17 @@ public class Input extends Activity {
             }
         });
 
+        String finalBookid = bookid;
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String setId = generateID(10);
+                String setId = finalBookid;
                 String setTitle = title.getText().toString().trim();
                 String setAuthor = author.getText().toString().trim();
                 String setPublisher = publisher.getText().toString().trim();
                 String setYear = year.getText().toString().trim();
                 int setComplete = id_done.isChecked() ? 1 : 0;
 
-                System.out.println(setTitle);
-                System.out.println(setAuthor);
-                System.out.println(setPublisher);
-                System.out.println(setYear);
-                System.out.println(setComplete);
 
                 Newbook = new Book();
                 Newbook.setId(setId);
@@ -91,14 +98,11 @@ public class Input extends Activity {
                 rootNode = FirebaseDatabase.getInstance("https://bookshelf-47530-default-rtdb.firebaseio.com/");
                 reference = rootNode.getReference("Books");
                 reference.child(setId).setValue(Newbook);
-                Toast.makeText(Input.this,"Buku Baru berhasil di tambah!", Toast.LENGTH_LONG).show();
+                Toast.makeText(Input.this,"Berhasil!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(Input.this, MainActivity.class));
                 finish();
             }
         });
-
-
-
     }
 
     public static String generateID(int len) {
@@ -109,6 +113,10 @@ public class Input extends Activity {
         for (int i = 0; i < len; i++)
             sb.append(chars.charAt(rnd.nextInt(chars.length())));
         return sb.toString();
+    }
+
+    public static Intent getActIntent(Activity activity) {
+        return new Intent(activity, Input.class);
     }
 
 
