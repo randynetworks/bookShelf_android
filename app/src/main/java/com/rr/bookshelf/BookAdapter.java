@@ -1,10 +1,12 @@
 package com.rr.bookshelf;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookHolder> {
         return new bookHolder(v);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull bookHolder holder, int position) {
         Book data = bookList.get(position);
@@ -40,6 +43,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookHolder> {
         holder.author.setText(data.getAuthor());
         holder.publisher.setText(data.getPublisher());
         holder.year.setText(data.getYear());
+
+        if (data.getComplete() == 1) {
+            holder.doneOrUnDone.setText("Belum Beres");
+        } else {
+            holder.doneOrUnDone.setText("Udah Beres");
+        }
     }
 
     @Override
@@ -49,12 +58,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookHolder> {
 
     public static class bookHolder extends RecyclerView.ViewHolder {
         TextView title, author, publisher, year;
+        Button doneOrUnDone;
         public bookHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textTitle);
             author = itemView.findViewById(R.id.textAuthor);
             publisher = itemView.findViewById(R.id.textPublisher);
             year = itemView.findViewById(R.id.textYear);
+            doneOrUnDone = itemView.findViewById(R.id.doneOrUnDone);
         }
     }
 }

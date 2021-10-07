@@ -1,19 +1,15 @@
 package com.rr.bookshelf;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,14 +19,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends Activity {
 
-    BookAdapter bookAdapter;
+    BookAdapter bookUnDoneAdapter;
+    BookAdapter bookDoneAdapter;
     DatabaseReference database = FirebaseDatabase.getInstance("https://bookshelf-47530-default-rtdb.firebaseio.com/").getReference("Books");
-    ArrayList<Book> bookList;
+    ArrayList<Book> bookUnDoneList;
+    ArrayList<Book> bookDoneList;
     RecyclerView recycleViewUnDone;
+    RecyclerView recycleViewDone;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +48,37 @@ public class MainActivity extends Activity {
             }
         });
 
+        // UN DONE READ
         recycleViewUnDone = findViewById(R.id.recycleViewUnDone);
         recycleViewUnDone.setHasFixedSize(true);
         recycleViewUnDone.setLayoutManager(new LinearLayoutManager(this));
 
-        bookList = new ArrayList<>();
-        bookAdapter = new BookAdapter( bookList, this);
-        recycleViewUnDone.setAdapter(bookAdapter);
+        bookUnDoneList = new ArrayList<>();
+        bookUnDoneAdapter = new BookAdapter(bookUnDoneList, this);
+        recycleViewUnDone.setAdapter(bookUnDoneAdapter);
+
+        // DONE READ
+        recycleViewDone = findViewById(R.id.recycleViewDone);
+        recycleViewDone.setHasFixedSize(true);
+        recycleViewDone.setLayoutManager(new LinearLayoutManager(this));
+
+        bookDoneList = new ArrayList<>();
+        bookDoneAdapter = new BookAdapter(bookDoneList, this);
+        recycleViewDone.setAdapter(bookDoneAdapter);
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren() ){
                     Book dataBook = dataSnapshot.getValue(Book.class);
-                    bookList.add(dataBook);
+                    if (dataBook.getComplete() == 0) {
+                        bookUnDoneList.add(dataBook);
+                    } else {
+                        bookDoneList.add(dataBook);
+                    }
                 }
-                bookAdapter.notifyDataSetChanged();
+                bookUnDoneAdapter.notifyDataSetChanged();
+                bookDoneAdapter.notifyDataSetChanged();
             }
 
             @Override

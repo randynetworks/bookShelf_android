@@ -63,33 +63,31 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewUnDone"
-        android:layout_width="374dp"
+        android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="375dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewDone"
+        android:layout_width="match_parent"
         android:layout_height="254dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnTambah"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="SpeakableTextPresentCheck">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/btnTambah"
@@ -100,7 +98,7 @@
         android:text="Tambah Buku"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView3" />
+        app:layout_constraintEnd_toEndOf="@+id/recycleViewDone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

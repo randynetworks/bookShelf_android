@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dunia Shopie"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textAuthor"
@@ -55,23 +56,23 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnRead"
+                    android:id="@+id/doneOrUnDone"
                     style="@style/btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:backgroundTint="@color/blue"
                     android:text="Udah Di Baca!"
                     android:textAllCaps="false"
-                    android:textColor="@color/yellow" />
+                    android:textColor="@color/yellow"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <Button
                     android:id="@+id/btnDelete"
                     style="@style/btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/holo_red_light"
                     android:text="Hapus"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
         </LinearLayout>
