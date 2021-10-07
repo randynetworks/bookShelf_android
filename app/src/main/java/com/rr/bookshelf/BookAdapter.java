@@ -97,14 +97,36 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookHolder> {
                 database.child(data.getId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context,"Buku berhasil di hapus!", Toast.LENGTH_LONG).show();
                         Intent main = new Intent(context, MainActivity.class);
                         context.startActivity(main);
+                        Toast.makeText(context,"Buku berhasil di hapus!", Toast.LENGTH_LONG).show();
                     }
                 });
 
             }
         });
+
+        holder.doneOrUnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int complete;
+                if (data.getComplete() == 1) {
+                    complete = 0;
+                } else {
+                    complete = 1;
+                }
+                database.child(data.getId()).child("complete").setValue(complete).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Intent main = new Intent(context, MainActivity.class);
+                        context.startActivity(main);
+                        Toast.makeText(context,"Buku berhasil di pindahkan!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
+
     }
 
     @Override
