@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,9 +30,10 @@ public class Input extends Activity {
     EditText author ;
     EditText publisher ;
     EditText year;
+    TextView labelTitle;
     Switch id_done;
     Button btnSimpan;
-    Book Newbook = (Book) getIntent().getSerializableExtra("book");
+    Book Newbook;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -54,19 +56,30 @@ public class Input extends Activity {
         publisher = findViewById(R.id.id_publisher);
         year = findViewById(R.id.id_year);
         id_done = findViewById(R.id.id_done);
+        labelTitle = findViewById(R.id.textLabel);
 
-        if (getIntent().getStringExtra("id") != null) {
-            bookid = getIntent().getStringExtra("id");
-            title.setText(getIntent().getStringExtra("title"));
-            author.setText(getIntent().getStringExtra("author"));
-            publisher.setText(getIntent().getStringExtra("publisher"));
-            year.setText(getIntent().getStringExtra("year"));
-            id_done.setText(getIntent().getStringExtra("complete"));
+        String extraId = getIntent().getStringExtra("id");
+        String extraYear = getIntent().getStringExtra("year");
+        String extraLabel = getIntent().getStringExtra("label");
+        String extraTitle = getIntent().getStringExtra("title");
+        String extraAuthor = getIntent().getStringExtra("author");
+        String extraBtnText = getIntent().getStringExtra("btnText");
+        String extraComplete = getIntent().getStringExtra("complete");
+        String extraPublisher = getIntent().getStringExtra("publisher");
 
+        if (extraId != null) {
+            title.setText(extraTitle);
+            author.setText(extraAuthor);
+            publisher.setText(extraPublisher);
+            year.setText(extraYear);
+            labelTitle.setText(extraLabel);
+            btnSimpan.setText("Edit Buku");
+            id_done.isChecked();
         }
 
         // action for back to home
         Button btnKembali = findViewById(R.id.btnKembali);
+
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +88,12 @@ public class Input extends Activity {
             }
         });
 
-        String finalBookid = bookid;
+        String finalBookid;
+        if (extraId != null) {
+            finalBookid = extraId;
+        }else {
+            finalBookid = bookid;
+        }
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

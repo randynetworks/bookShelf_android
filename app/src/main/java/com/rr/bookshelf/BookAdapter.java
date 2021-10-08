@@ -130,13 +130,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookHolder> {
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sendBook = new Intent(context, Intent.class);
+                Intent sendBook = new Intent(context, Input.class);
                 sendBook.putExtra("id", data.getId());
                 sendBook.putExtra("year", data.getYear());
                 sendBook.putExtra("title", data.getTitle());
                 sendBook.putExtra("author", data.getAuthor());
                 sendBook.putExtra("complete", data.getComplete());
                 sendBook.putExtra("publisher", data.getPublisher());
+
+                sendBook.putExtra("label", "Edit Buku!");
+                sendBook.putExtra("textButton", "Edit Buku");
 
                 context.startActivity(sendBook);
             }
